@@ -6,10 +6,9 @@ You can find the link in the main() function in main.py, and the preprocessed im
 GitHub has a limit so I cannot push the dataset into the repository.
 
 # Notes on some parts
-The current BATCH_SIZE is a tuple of (10, 10), used for debug printing via matplotlib.pyplot (plt). **matplotlib is not for real training, only for debugging.
-**
-The current resize for every image is 224x224 (represented as a tuple of int, (224, 224)).
-IMAGE_PATH and ANNOTATION_PATH are meant for raw dataset, these were used when I preprocessed the images before zipping the preprocessed output into the google drive link.
+The current BATCH_SIZE is a tuple of (10, 10), used for debug printing via matplotlib.pyplot (plt). **matplotlib is not for real training, only for debugging.**
+The current resize for every image is **224x224** (represented as a tuple of int, (224, 224)).
+IMAGE_PATH and ANNOTATION_PATH are meant for **raw dataset**, these were used when I preprocessed the images before zipping the preprocessed output into the google drive link.
 
 # How to deal with data
 in preprocessor.py you will find several functions, but the only note is this:
