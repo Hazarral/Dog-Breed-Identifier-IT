@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>8e6accd5-0815-4a96-af5b-4963414010cc</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Machine_Learning.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,10 +21,15 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Machine_Learning.py" />
+    <Compile Include="main.py" />
+    <Compile Include="preprocessor.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dataset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dataset\Classes.txt" />
+    <Content Include="dataset\Image paths.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
