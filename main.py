@@ -1,9 +1,15 @@
 from tqdm import tqdm
 from preprocessor import *
-import cv2
 import os
-import numpy as np
-import matplotlib.pyplot as plt
+
+try:
+    import cv2
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from tqdm import tqdm
+except ImportError as e:
+    print("Missing dependencies. Please run: pip install -r requirements.txt")
+    exit(1)
 
 def get_image_paths(image_paths : list[str], IMAGE_DIR : str) -> None:
     print("Parsing images path...")
@@ -89,6 +95,10 @@ def main() -> None:
     ANNOTATION_DIR : str = r"D:\Stanford dog breeds\Annotation"
     BATCH_SIZE : tuple[int, int] = (10, 10)
     
+    for path_name, path in [("IMAGE_DIR", IMAGE_DIR), ("ANNOTATION_DIR", ANNOTATION_DIR)]:
+        if not os.path.isdir(path):
+            raise FileNotFoundError(f"{path_name} not found: {path}")
+
     # Create folder "preprocessed images" in current working directory
     PREPROCESS_DIR = os.path.join(os.getcwd(), "preprocessed images")
     os.makedirs(PREPROCESS_DIR, exist_ok=True)
