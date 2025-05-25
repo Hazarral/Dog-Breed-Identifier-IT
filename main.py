@@ -88,6 +88,10 @@ def show_image_batch(images: list[np.ndarray], BATCH_SIZE: tuple[int, int]) -> N
     plt.subplots_adjust(top=0.95)  # Adjust for title
     plt.show()
 
+def preprocess_stanford_dataset(image_paths : list[str], annotation_paths : list[str], PREPROCESS_DIR : str, size : tuple[int, int]) -> None:
+    for i in range(len(image_paths)):
+        preprocess_and_save(image_paths[i], annotation_paths[i], PREPROCESS_DIR, size)
+
 def main() -> None:
     """
     Please download the dataset at: https://drive.google.com/file/d/1cR9CvGNnjQykvkNn2ZiU3WuK6CA9fDxv/view?usp=sharing
@@ -106,7 +110,7 @@ def main() -> None:
             raise FileNotFoundError(f"{path_name} not found: {path}")
 
     # Create folder "preprocessed images" in current working directory
-    PREPROCESS_DIR = os.path.join(os.getcwd(), "preprocessed images")
+    PREPROCESS_DIR = r"D:\preprocessed images"
     os.makedirs(PREPROCESS_DIR, exist_ok=True)
 
     #Store the image and annotation paths
@@ -123,6 +127,9 @@ def main() -> None:
     for category in ANNOTATION_DIR:
         labels.append(normalize_label(category))
 
+    #ONLY FOR HARD-DRIVE STORAGE !!!!!
+    preprocess_stanford_dataset(image_paths, annotation_paths, PREPROCESS_DIR, (224, 224))
+    
     #Load the prepocessed images
     preprocessed_images : list[np.ndarray] = load_preprocessed_images(PREPROCESS_DIR, 10)
 

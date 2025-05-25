@@ -48,15 +48,20 @@ def crop_and_resize(image_path : str, annotation_path : str, output_size : tuple
     if img is None:
         raise ValueError(f"Failed to load image at {image_path}")
 
+
     h, w = img.shape[:2]
     if (h, w) == output_size:
         #Don't crop any further
         return img
 
+    #Convert to rgb
+    rgb_img : np.ndarray = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+
     #Get the bounding box to crop
     (xmin, ymin, xmax, ymax) = parse_bounding_box(annotation_path)
 
-    cropped : np.ndarray = img[ymin:ymax, xmin:xmax] #Cropping is done like an array
+    cropped : np.ndarray = rgb_img[ymin:ymax, xmin:xmax] #Cropping is done like an array
     resized : np.ndarray = cv2.resize(cropped, output_size) #And resize with cv2's methods
 
     return resized
