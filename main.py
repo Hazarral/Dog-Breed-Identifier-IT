@@ -89,6 +89,12 @@ def show_image_batch(images: list[np.ndarray], BATCH_SIZE: tuple[int, int]) -> N
     plt.show()
 
 def main() -> None:
+    """
+    Please download the dataset at: https://drive.google.com/file/d/1cR9CvGNnjQykvkNn2ZiU3WuK6CA9fDxv/view?usp=sharing
+    And place the preprocessed images into the empty "preprocessed images" folder
+    The "Annotation" folder will also be extracted, but used later
+    """
+
     #Directories and batch size
     #CHANGE THESE PATHS TO FIT YOUR COMPUTER
     IMAGE_DIR : str = r"D:\Stanford dog breeds\Images"
