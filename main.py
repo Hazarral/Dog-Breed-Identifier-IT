@@ -101,39 +101,12 @@ def main() -> None:
 
     #Directories and batch size
     #CHANGE THESE PATHS TO FIT YOUR COMPUTER
-    IMAGE_DIR : str = r"D:\Stanford dog breeds\Images"
-    ANNOTATION_DIR : str = r"D:\Stanford dog breeds\Annotation"
-    BATCH_SIZE : tuple[int, int] = (10, 10)
+    IMAGE_DIR : str = r"D:\stanford_dataset_train\preprocessed images"
+    ANNOTATION_DIR : str = r"D:\stanford_dataset_train\Annotation"
+    LABEL_DIR : str = r"D:\stanford_dataset_train\labels.csv"
     
-    for path_name, path in [("IMAGE_DIR", IMAGE_DIR), ("ANNOTATION_DIR", ANNOTATION_DIR)]:
-        if not os.path.isdir(path):
-            raise FileNotFoundError(f"{path_name} not found: {path}")
+     #Now we train
 
-    # Create folder "preprocessed images" in current working directory
-    PREPROCESS_DIR = r"D:\preprocessed images"
-    os.makedirs(PREPROCESS_DIR, exist_ok=True)
-
-    #Store the image and annotation paths
-    image_paths : list[str] = []
-    annotation_paths : list[str] = []
-
-    labels : list[str] = os.listdir(ANNOTATION_DIR)
-
-    #Get image and annotation paths
-    get_image_paths(image_paths, IMAGE_DIR)
-    get_annotation_paths(annotation_paths, ANNOTATION_DIR)
-
-    #Change label to normalized names
-    for category in ANNOTATION_DIR:
-        labels.append(normalize_label(category))
-
-    #ONLY FOR HARD-DRIVE STORAGE !!!!!
-    preprocess_stanford_dataset(image_paths, annotation_paths, PREPROCESS_DIR, (224, 224))
-    
-    #Load the prepocessed images
-    preprocessed_images : list[np.ndarray] = load_preprocessed_images(PREPROCESS_DIR, 10)
-
-    show_image_batch(preprocessed_images, BATCH_SIZE)
 
 if __name__ == "__main__":
     main()
